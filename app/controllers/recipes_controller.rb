@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
 
+    before_action :require_login
+
     def index
         @recipes = Recipe.all
+        
     end
 
     def new
@@ -31,7 +34,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions)
+        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
     end
 
 end
