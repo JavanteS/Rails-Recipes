@@ -1,14 +1,14 @@
 class RecipesController < ApplicationController
 
-    before_action :require_login
+    before_action :authenticate_user!
 
     def index
         @recipes = Recipe.all
-        
     end
 
     def new
         @recipe = Recipe.new
+        session
     end
 
     def create
@@ -20,6 +20,9 @@ class RecipesController < ApplicationController
         else
             redirect_to :new
         end 
+    end
+
+    def show 
     end
 
     def edit
@@ -34,7 +37,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
+        params.require(:recipe).permit(:title, :instructions)
     end
 
 end
