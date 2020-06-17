@@ -9,7 +9,14 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new()
+        @recipe = Recipe.new(recipe_params)
+
+        if @recipe.valid?
+            @recipe.save
+            redirect_to @recipe
+        else
+            redirect_to :new
+        end 
     end
 
     def edit
@@ -24,7 +31,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:, :last_name, :email, :password, :password_confirmation)
+        params.require(:recipe).permit(:title, :instructions)
     end
 
 end
