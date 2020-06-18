@@ -4,12 +4,12 @@ class RecipesController < ApplicationController
 
 
     def index
-        @recipes = Recipe.all
+        binding.pry
+        @recipes = current_user.recipes
     end
 
     def new
         @recipe = Recipe.new
-        session
     end
 
     def create
@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
             @recipe.save
             redirect_to @recipe
         else
-            redirect_to :new
+            redirect_to new_recipe_path
         end 
     end
 
@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions)
+        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
     end
 
 end
