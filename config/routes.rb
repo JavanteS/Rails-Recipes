@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   root to: "application#welcome"
-  resources :recipes
-  resources :categories
-
+  
   resources :categories do
     resources :recipes, only: [:index, :show, :new]
   end
-
+  resources :recipes
 
   devise_for :users, :controllers => {:registrations => 'registrations', :omniauth_callbacks => "callbacks" }
 

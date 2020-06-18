@@ -3,6 +3,12 @@ class RecipesController < ApplicationController
 
 
     def index
+        # if params[:category_id]
+        #     @recipes = Category.find(params[:category_id]).recipes
+        # else
+        #     
+        # end
+
         @recipes = Recipe.all
     end
 
@@ -12,7 +18,6 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = Recipe.new(recipe_params)
-
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -44,7 +49,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
+        params.require(:recipe).permit(:title, :instructions, :category_id)
     end
 
 end

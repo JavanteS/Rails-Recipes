@@ -1,7 +1,11 @@
 
 <br>
-<div class="form">
+<div class="container">
 <%= form_for @recipe do |f| %>
+<%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true) %>
+<%= f.hidden_field :category_id %>
+
+
 
 <%= f.label :title %>
 <%= f.text_field :title %>
