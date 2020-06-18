@@ -13,12 +13,12 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @recipe = current_user.recipes.new(category_id: params[:category_id])
+        @recipe = current_user.recipes.build
     end
 
     def create
         #binding.pry
-        @recipe = current_user.recipes.new(recipe_params)
+        @recipe = current_user.recipes.build(recipe_params)
 
         if @recipe.valid?
             @recipe.save
