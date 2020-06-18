@@ -23,13 +23,21 @@ class RecipesController < ApplicationController
         end 
     end
 
-    def show 
+    def show
+        @recipe = Recipe.find(params[:id])
     end
 
     def edit
+        @recipe = Recipe.find(params[:id])  
     end
 
     def update
+        @recipe = Recipe.find(params[:id])
+        if @recipe.update(recipe_params)
+            redirect_to @recipe
+        else
+            render :edit
+        end
     end
 
     def destroy
