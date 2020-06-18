@@ -1,11 +1,9 @@
 class RecipesController < ApplicationController
-
     before_action :authenticate_user!
 
 
     def index
-        binding.pry
-        @recipes = current_user.recipes
+        @recipes = Recipe.all
     end
 
     def new
