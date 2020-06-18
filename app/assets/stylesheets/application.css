@@ -15,7 +15,7 @@
  */
 
  body {
-     margin: 42px;
+     margin: 5px;
      padding: 0;
      background: #ffffff;
  }
@@ -29,7 +29,7 @@
   
   .topnav a {
     float: left;
-    color: #857575;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
