@@ -25,6 +25,7 @@
     background-color: #333;
     overflow: hidden;
     float: left;
+    width: 100%;
   }
   
   .topnav a {
