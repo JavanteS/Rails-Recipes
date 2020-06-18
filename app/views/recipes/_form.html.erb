@@ -17,10 +17,20 @@
 <%= form_for @recipe do |f| %>
 <br>
 
-
+<% if !@category%>
 <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true) %>
 
+Create new Category
 
+<%= f.fields_for :category, @recipe.build_category  do |uf|%>
+    
+    <%= uf.label :name  %>
+    <%= uf.text_field :name %>
+<% end %>
+<% else %>
+
+<%= f.hidden_field :category_id%>
+<% end %>
 <br>
 <%= f.label :title %>
 <%= f.text_field :title %>

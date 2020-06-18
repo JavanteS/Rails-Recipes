@@ -13,11 +13,19 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @recipe = current_user.recipes.build
+        #check for :category_id in params if yes
+        #look up hidden field tag
+        if params[:category_id]
+            binding.pry
+            @category = current_user.categories.find_by(id: params[:category_id])
+            @recipe = @category.recipes.build
+        else  
+            @recipe = current_user.recipes.build
+        end
     end
 
     def create
-        #binding.pry
+        binding.pry
         @recipe = current_user.recipes.build(recipe_params)
 
         if @recipe.valid?
@@ -51,7 +59,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
+        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id, category_attributes: [:name])
     end
 
 end
