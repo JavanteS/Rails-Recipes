@@ -9,15 +9,17 @@ class RecipesController < ApplicationController
         #     
         # end
 
-        @recipes = Recipe.all
+        @recipes = current_user.recipes
     end
 
     def new
-        @recipe = Recipe.new(category_id: params[:category_id])
+        @recipe = current_user.recipes.new(category_id: params[:category_id])
     end
 
     def create
-        @recipe = Recipe.new(recipe_params)
+        #binding.pry
+        @recipe = current_user.recipes.new(recipe_params)
+
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -27,7 +29,7 @@ class RecipesController < ApplicationController
     end
 
     def show
-        @recipe = Recipe.find(params[:id])
+        @recipe = current_user.recipes.find(params[:id])
     end
 
     def edit
@@ -49,7 +51,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:title, :instructions, :category_id)
+        params.require(:recipe).permit(:title, :instructions, :category_id, :user_id)
     end
 
 end
