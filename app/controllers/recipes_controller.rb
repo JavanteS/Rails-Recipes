@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @recipe = Recipe.new
+        @recipe = Recipe.new(category_id: params[:category_id])
     end
 
     def create
