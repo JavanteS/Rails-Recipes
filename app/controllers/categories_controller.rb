@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     end
 
     def show
-        @category = Category.find(params[:id])
+        @category = current_user.categories.find_by(params[:id])
     end
 
     def edit
