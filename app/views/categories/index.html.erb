@@ -1,6 +1,6 @@
 
 
-<% @categories.each do |c|%>
+<% @categories.uniq.each do |c|%>
 
 <%= link_to c.name, category_recipes_path(c) %>
 

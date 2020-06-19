@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = current_user.recipes.build(recipe_params)
-
+        binding.pry
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe

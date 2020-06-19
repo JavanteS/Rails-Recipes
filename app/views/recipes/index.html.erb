@@ -1,8 +1,10 @@
 
 
-
+<ul>
 <% @recipes.each do |r| %>
 
 <%= r.title %> 
 <% end %>
+</ul>
+<%= link_to 'Make a recipe', new_category_recipe_path %>
 
