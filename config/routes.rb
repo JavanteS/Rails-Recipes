@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
   resources :recipes
 
+  get "/recipes/timeupdated", to: "recipes#filter_time"
+
   devise_for :users, :controllers => {:registrations => 'registrations', :omniauth_callbacks => "callbacks" }
 
   devise_scope :user do 

@@ -8,9 +8,9 @@ class RecipesController < ApplicationController
         else
             @recipes = current_user.recipes
         end
-
-        
     end
+
+
 
     def new
         #check for :category_id in params if yes
@@ -36,6 +36,10 @@ class RecipesController < ApplicationController
 
     def show
         @recipe = current_user.recipes.find(params[:id])
+    end
+
+    def filter_time
+        @recipes = current_user.recipes
     end
 
     def edit
