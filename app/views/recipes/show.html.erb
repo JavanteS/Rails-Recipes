@@ -1,5 +1,13 @@
  
- 
- <%= @recipe.title %>
+ <ul>
+ <li><%= @recipe.title %></li>
+
+ <li><%= @recipe.cooking_time %></li>
+
+ <li><%= @recipe.instructions %></li>
+
+</ul>
+
+ <%= link_to 'Edit', edit_recipe_path(@recipe) %>
 
  

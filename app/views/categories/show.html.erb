@@ -1,6 +1,10 @@
 
+<%= @category.name %>
 
 
+<% @category.recipes do |r|%>
 
+<%= link_to r.title, category_recipe_path(@category, r) %> 
 
+<% end %>
 

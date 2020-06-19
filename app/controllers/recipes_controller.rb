@@ -35,11 +35,19 @@ class RecipesController < ApplicationController
     end
 
     def show
-        @recipe = current_user.recipes.find(params[:id])
+        if params[:category_id]
+            #binding.pry
+            @recipes = current_user.categories.find(params[:category_id]).recipes
+            @recipe = @recipes.find_by(id: params[:id])
+            #@recipe = @category.recipes.find_by(id: params[:id])
+        else
+            @recipe = current_user.recipes.find_by(id: params[:id])
+        end
     end
 
     def filter_time
         @recipes = current_user.recipes
+        render :filter_time
     end
 
     def edit
@@ -56,6 +64,9 @@ class RecipesController < ApplicationController
     end
 
     def destroy
+        @recipe = current_user.recipes.find(params[:id])
+        @recipe.destroy
+        redirect_to recipes_path
     end
 
     private
