@@ -4,24 +4,28 @@ class RecipesController < ApplicationController
 
     def index
         if params[:category_id]
-            @recipes = current_user.categories.find(params[:category_id]).recipes
+            @category = current_user.categories.find_by(id: params[:category_id])
+            if @category.nil?
+                redirect_to categories_path
+            else
+                @recipes = @category.recipes
+            end
         else
             @recipes = current_user.recipes
         end
     end
 
-
-
     def new
         #check for :category_id in params if yes
         #look up hidden field tag
         if params[:category_id]
-
             @category = current_user.categories.find_by(id: params[:category_id])
             @recipe = @category.recipes.build
         else  
             @recipe = current_user.recipes.build
         end
+        
+
     end
 
     def create
