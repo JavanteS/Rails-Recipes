@@ -2,9 +2,13 @@
 <%= @category.name %>
 
 
+
+<h3>Recipes</h3>
 <% @category.recipes do |r|%>
 
 <%= link_to r.title, category_recipe_path(@category, r) %> 
 
 <% end %>
 
+
+<%= link_to 'Make a recipe', new_category_recipe_path %>

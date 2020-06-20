@@ -2,13 +2,15 @@
 
 <ul>
 <% @recipes.each do |r| %>
-
 <li><%= link_to r.title, category_recipe_path(r.category, r) %> </li>
 <% end %>
 </ul>
 
 
-<%= link_to 'Make a recipe', new_category_recipe_path %>
+<%= link_to 'Add recipe', new_category_recipe_path %>
+
+
+
 
 
 

@@ -1,9 +1,9 @@
 
 
-<% @categories.uniq.each do |c|%>
+<% @categories.each do |c|%>
 
 <%= link_to c.name, category_recipes_path(c) %>
 
-
-
 <% end %>
+
+

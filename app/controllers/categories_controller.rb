@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
     end
 
     def new
+        @category = current_user.categories.build
     end
 
     def create

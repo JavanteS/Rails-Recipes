@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
     def index
         if params[:category_id]
-            @recipes = Category.find(params[:category_id]).recipes
+            @recipes = current_user.categories.find(params[:category_id]).recipes
         else
             @recipes = current_user.recipes
         end
@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
         #check for :category_id in params if yes
         #look up hidden field tag
         if params[:category_id]
+
             @category = current_user.categories.find_by(id: params[:category_id])
             @recipe = @category.recipes.build
         else  
@@ -25,7 +26,7 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = current_user.recipes.build(recipe_params)
-        binding.pry
+        #binding.pry
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -39,6 +40,9 @@ class RecipesController < ApplicationController
             #binding.pry
             @recipes = current_user.categories.find(params[:category_id]).recipes
             @recipe = @recipes.find_by(id: params[:id])
+            if @recipe.nil?
+                redirect_to category_recipes_path, alert: "recipe not found"
+            end
             #@recipe = @category.recipes.find_by(id: params[:id])
         else
             @recipe = current_user.recipes.find_by(id: params[:id])
