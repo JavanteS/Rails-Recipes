@@ -9,8 +9,11 @@ class CategoriesController < ApplicationController
         @category = current_user.categories.build
     end
 
+
     def create
     end
+
+   
 
     def show
         @category = current_user.categories.find_by(params[:id])

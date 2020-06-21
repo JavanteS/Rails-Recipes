@@ -55,11 +55,16 @@ class RecipesController < ApplicationController
 
     def filter_time
         @recipes = current_user.recipes
-        render :filter_time
+        
     end
 
     def edit
-        @recipe = current_user.recipes.find(params[:id])  
+        # @recipe = current_user.recipes.find(params[:id])
+            
+            @recipe = current_user.recipes.find_by(id: params[:id])
+            if @recipe.nil?
+                redirect_to recipes_path
+            end 
     end
 
     def update
@@ -83,4 +88,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:title, :instructions, :cooking_time, :category_id, :user_id, category_attributes: [:name])
     end
 
+    def find_game
+        @recipe = current_user.recipes.find_by(id: params[:id])
+    end
 end
