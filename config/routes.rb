@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "application#welcome"
-  get "/categories/timeupdated", to: "categories#filter_time"
-  
+  get "/recipes/timeupdated", to: "recipes#filter_time"
+
   resources :categories do
     resources :recipes, only: [:index, :show, :new]
   end

@@ -55,7 +55,6 @@ class RecipesController < ApplicationController
 
     def filter_time
         @recipes = current_user.recipes
-        
     end
 
     def edit
