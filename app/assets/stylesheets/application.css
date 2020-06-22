@@ -17,7 +17,26 @@
  body {
      margin: 0px;
      padding: 0;
-     background: #ffffff;
+     background-color: #ebebeb;
+     
+ }
+
+ #logo-wrapper {
+  
+  height: 4em;
+  min-height: 4em;
+  color: rgb(0, 0, 0);
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif; 
+ }
+
+ .wrapper {
+  width: 1000px;
+  margin-top: 75px;
+  margin-left: 250px;
+  background-color: #ffffff;
+  border-radius: 0.325rem;
+  
  }
 
  #header-wrapper {
@@ -27,7 +46,7 @@
 }
 
  .topnav {
-    background-color: #333;
+    background-color: #4682B4;
     overflow: hidden;
     float: left;
     width: 100%;
