@@ -1,8 +1,8 @@
 <h2>Your recipe list</h2>
-<p>You have <%= @recipes.count %> recipes</p>
+<p>Number of recipes: <%= @recipes.count %></p>
 <ul>
 <% @recipes.each do |r|%>
-<p> <%= r.category.name %>: <%= r.title %>-<%= r.created_at.strftime("%B %d, %Y") %> </p>
+<p> <%= r.category.name %>: <%= link_to r.title, recipe_path(r) %>-<%= r.created_at.strftime("%B %d, %Y") %> </p>
 
 <% end %>
 </ul>

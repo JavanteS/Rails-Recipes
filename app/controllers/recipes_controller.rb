@@ -54,7 +54,7 @@ class RecipesController < ApplicationController
     end
 
     def filter_time
-        @recipes = current_user.recipes
+        @recipes = current_user.recipes.ordered_by_title
     end
 
     def edit
