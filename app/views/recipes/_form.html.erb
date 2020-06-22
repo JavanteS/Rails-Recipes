@@ -13,23 +13,32 @@
   </div>
 <% end %>
 
-<div class="container">
+
 <%= form_for @recipe do |f| %>
 <br>
 
+<div class="form-group">
+<%= f.label :title %>
+<%= f.text_field :title %> <br>
+</div>
 
+<div class="form-group">
+<%= f.label :cooking_time %>
+<%= f.text_field :cooking_time %> <br>
+</div>
 
+<div class="form-group">
+<%= f.label :instructions %><br>
+<%= f.text_area :instructions %> 
+</div>
 
-<p>Title: <%= f.text_field :title %></p>
-
-<p>Cook Time: <%= f.text_field :cooking_time %></p>
-
-<p>Instructions: <%= f.text_area :instructions %> </p>
 <br>
+
 <% if !@category%>
+<p>Select an existing category</p>
 <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true) %>
 
-<p>Create new Category</p>
+<p>Or create a new one</p>
 
 <%= f.fields_for :category, @recipe.build_category  do |uf|%>
     
@@ -46,4 +55,3 @@
 
 <% end %>
 
-</div>

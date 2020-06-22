@@ -17,11 +17,13 @@ class RecipesController < ApplicationController
     end
 
     def new
-        #check for :category_id in params if yes
-        #look up hidden field tag
         if params[:category_id]
             @category = current_user.categories.find_by(id: params[:category_id])
-            @recipe = @category.recipes.build
+            if @category    
+                @recipe = @category.recipes.build
+            else
+                redirect_to new_recipe_path, alert: "recipe not found"
+            end
         else  
             @recipe = current_user.recipes.build
         end
@@ -31,6 +33,7 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = current_user.recipes.build(recipe_params)
+
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -41,13 +44,12 @@ class RecipesController < ApplicationController
 
     def show
         if params[:category_id]
-            #binding.pry
             @recipes = current_user.categories.find(params[:category_id]).recipes
             @recipe = @recipes.find_by(id: params[:id])
             if @recipe.nil?
                 redirect_to category_recipes_path, alert: "recipe not found"
             end
-            #@recipe = @category.recipes.find_by(id: params[:id])
+            
         else
             @recipe = current_user.recipes.find_by(id: params[:id])
         end
@@ -58,12 +60,9 @@ class RecipesController < ApplicationController
     end
 
     def edit
-        # @recipe = current_user.recipes.find(params[:id])
-            
-            #@recipe = current_user.recipes.find_by(id: params[:id])
-            if @recipe.nil?
-                redirect_to recipes_path
-            end 
+         if !@recipe
+            redirect_to new_recipe_path, alert: "Recipe not found. Create a new one here."
+         end 
     end
 
     def update
