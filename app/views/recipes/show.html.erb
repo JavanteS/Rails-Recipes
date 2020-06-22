@@ -1,15 +1,15 @@
  
- <ul>
- <li><%= @recipe.title %></li>
+ 
+ <h3><%= @recipe.title %></h3>
 
- <li><%= @recipe.cooking_time %></li>
+ <p><%= @recipe.cooking_time %></p>
 
- <li><%= @recipe.instructions %></li>
+ <p><%= @recipe.instructions %></p>
 
-</ul>
 
- <%= link_to 'Edit', edit_recipe_path(@recipe) %>
 
-  <%= link_to 'Delete', recipe_path(@recipe), data: { method: :delete } %> 
+ <p><%= link_to 'Edit', edit_recipe_path(@recipe) %></p>
+
+ <p><%= link_to 'Delete', recipe_path(@recipe), data: { method: :delete } %></p>
 
  

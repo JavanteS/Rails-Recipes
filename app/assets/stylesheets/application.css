@@ -17,36 +17,31 @@
  body {
      margin: 0px;
      padding: 0;
-     background-color: #ebebeb;
+     background-color: #ffffff;
      
  }
 
+ p {
+   margin-left: 15px;
+ }
+
  #logo-wrapper {
-  
+  margin-left: 10px;
   height: 4em;
   min-height: 4em;
   color: rgb(0, 0, 0);
   position: relative;
-  font-family: Verdana, Geneva, Tahoma, sans-serif; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
  }
 
- .wrapper {
-  width: 1000px;
-  margin-top: 75px;
-  margin-left: 250px;
-  background-color: #ffffff;
-  border-radius: 0.325rem;
-  
- }
+ 
 
- #header-wrapper {
-    overflow: hidden;
-    padding: .5em 0em;
-    background: #FFF;
-}
+
+
+
 
  .topnav {
-    background-color: #4682B4;
+    background-color: #4683b4;
     overflow: hidden;
     float: left;
     width: 100%;
@@ -61,6 +56,9 @@
     font-size: 17px;
   }
 
+  a {
+    text-decoration: none;
+  }
   
 .field_with_errors {
   padding: 2px;
