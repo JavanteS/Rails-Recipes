@@ -15,11 +15,16 @@
  */
 
  body {
-     margin: 5px;
+     margin: 0px;
      padding: 0;
      background: #ffffff;
  }
 
+ #header-wrapper {
+    overflow: hidden;
+    padding: .5em 0em;
+    background: #FFF;
+}
 
  .topnav {
     background-color: #333;
