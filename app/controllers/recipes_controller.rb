@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
             @recipe.save
             redirect_to @recipe
         else
-            redirect_to new_recipe_path
+            render :new
         end 
     end
 
@@ -87,7 +87,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:title, :instructions, :cooking_time, :category_id, :user_id, category_attributes: [:name])
     end
 
-    def find_game
+    def set_recipe
         @recipe = current_user.recipes.find_by(id: params[:id])
     end
 end
