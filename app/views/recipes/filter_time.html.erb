@@ -1,0 +1,8 @@
+<h2>Your recipe list</h2>
+<p>You have <%= @recipes.count %> recipes</p>
+<ul>
+<% @recipes.each do |r|%>
+<p> <%= r.category.name %>: <%= r.title %>-<%= r.created_at.strftime("%B %d, %Y") %> </p>
+
+<% end %>
+</ul>
