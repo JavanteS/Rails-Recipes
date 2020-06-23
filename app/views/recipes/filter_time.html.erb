@@ -3,7 +3,7 @@
 <p>Number of recipes: <%= @recipes.count %></p>
 <ul>
 <% @recipes.each do |r|%>
-<li><%= r.category.name %>: <%= link_to r.title, recipe_path(r) %>-<%= r.created_at.strftime("%B %d, %Y") %></li>
+<li><%= r.category.name %>: <%= r.title %>-<%= r.created_at.strftime("%B %d, %Y") %></li>
 
 <% end %>
 </ul>

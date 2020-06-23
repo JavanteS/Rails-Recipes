@@ -23,8 +23,6 @@ class RecipesController < ApplicationController
         else  
             @recipe = current_user.recipes.build
         end
-        
-
     end
 
     def create
