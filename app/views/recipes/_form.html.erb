@@ -36,15 +36,16 @@
 
 <% if !@category%>
 <p>Select an existing category</p>
-<%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true) %>
+<%= f.collection_select(:category_id, current_user.categories, :id, :name, include_blank: true) %>
 
 <p>Or create a new one</p>
 
 <%= f.fields_for :category, @recipe.build_category  do |uf|%>
     
-    <%= uf.label :name  %>
-    <%= uf.text_field :name %>
+<%= uf.label :name  %>
+<%= uf.text_field :name %>
 <% end %>
+
 <% else %>
 
 <%= f.hidden_field :category_id%>
