@@ -2,13 +2,15 @@
 
 <ul>
 <% @recipes.each do |r| %>
-<li><%= link_to r.title, category_recipe_path(r.category, r) %> </li>
+<li><p><%= r.category.name %> - <%= link_to r.title, recipe_path(r) %></p> </li>
 <% end %>
 </ul>
 
 
-<%= link_to 'Add recipe', new_category_recipe_path %>
 
+<% if @category%>
+<p><%= link_to 'Add a recipe to this category', new_category_recipe_path %></p>
+<% end %>
 
 
 

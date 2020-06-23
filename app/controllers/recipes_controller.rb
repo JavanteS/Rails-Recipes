@@ -5,12 +5,8 @@ class RecipesController < ApplicationController
 
     def index
         if params[:category_id]
-            @category = current_user.categories.find_by(id: params[:category_id])
-            if @category.nil?
-                redirect_to categories_path
-            else
-                @recipes = @category.recipes
-            end
+            set_cat
+            is_it_a_cat(@category)
         else
             @recipes = current_user.recipes
         end
@@ -18,7 +14,7 @@ class RecipesController < ApplicationController
 
     def new
         if params[:category_id]
-            @category = current_user.categories.find_by(id: params[:category_id])
+            set_cat
             if @category    
                 @recipe = @category.recipes.build
             else
@@ -33,7 +29,6 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = current_user.recipes.build(recipe_params)
-
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -46,12 +41,10 @@ class RecipesController < ApplicationController
         if params[:category_id]
             @recipes = current_user.categories.find(params[:category_id]).recipes
             @recipe = @recipes.find_by(id: params[:id])
-            if @recipe.nil?
-                redirect_to category_recipes_path, alert: "recipe not found"
-            end
-            
+            is_it_a_recipe(@recipe) 
         else
             @recipe = current_user.recipes.find_by(id: params[:id])
+            is_it_a_recipe(@recipe)
         end
     end
 
@@ -60,9 +53,7 @@ class RecipesController < ApplicationController
     end
 
     def edit
-         if !@recipe
-            redirect_to new_recipe_path, alert: "Recipe not found. Create a new one here."
-         end 
+        is_it_a_recipe(@recipe)
     end
 
     def update
@@ -75,7 +66,7 @@ class RecipesController < ApplicationController
 
     def destroy
         @recipe.destroy
-        redirect_to recipes_path
+        redirect_to categories_path, alert: "Recipe deleted"
     end
 
     private
@@ -86,5 +77,23 @@ class RecipesController < ApplicationController
 
     def set_recipe
         @recipe = current_user.recipes.find_by(id: params[:id])
+    end
+
+    def is_it_a_recipe(recipe)
+        if !recipe
+            redirect_to new_recipe_path, alert: "Recipe not found. Create a new one here." 
+        end
+    end
+
+    def set_cat
+        @category = current_user.categories.find_by(id: params[:category_id])
+    end
+    
+    def is_it_a_cat(category)
+        if category
+            @recipes = category.recipes
+        else
+            redirect_to categories_path, alert: "Category not found"
+        end
     end
 end
