@@ -2,8 +2,13 @@
 
 
 
+
+
 <% if user_signed_in? %>
 <p>Hi <%=current_user.username%>! Get started by creating and managing your recipes.</p><br>
+
+<% else%>
+<p>Welcome to "Cooking for One". Get started by signing up or logging to manage your recipes.</p>
 <% end %>
 
 

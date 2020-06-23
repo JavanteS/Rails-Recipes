@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = current_user.recipes.build(recipe_params)
+
         if @recipe.valid?
             @recipe.save
             redirect_to @recipe
@@ -38,15 +39,18 @@ class RecipesController < ApplicationController
     def show
         if params[:category_id]
             @recipes = current_user.categories.find(params[:category_id]).recipes
+
             @recipe = @recipes.find_by(id: params[:id])
+
             is_it_a_recipe(@recipe) 
         else
             @recipe = current_user.recipes.find_by(id: params[:id])
+
             is_it_a_recipe(@recipe)
         end
     end
 
-    def filter_time
+    def filter_list
         @recipes = current_user.recipes.ordered_by_title
     end
 
@@ -64,7 +68,7 @@ class RecipesController < ApplicationController
 
     def destroy
         @recipe.destroy
-        redirect_to categories_path, alert: "Recipe deleted"
+        redirect_to recipes_path, alert: "Recipe deleted"
     end
 
     private

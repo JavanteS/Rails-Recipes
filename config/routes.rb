@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root to: "application#welcome"
-  get "/recipes/timeupdated", to: "recipes#filter_time"
+  get "/recipes/ordered_list", to: "recipes#filter_list"
 
   resources :categories do
     resources :recipes, only: [:index, :show, :new]
   end
-  resources :recipes
+
 
   
 
