@@ -1,4 +1,6 @@
-Cooking for One
+Application name
+    
+    Cooking for One
 
 Get Started 
 
