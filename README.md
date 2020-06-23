@@ -13,8 +13,8 @@ Sign up to start managing your recipes.
 Contributing guide
 
 License
+    This project is licensed under the MIT License – see the LICENSE file for details.
 
-Acknowledgments
 
 
 
