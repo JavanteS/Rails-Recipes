@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
 
 
     def index
+
         if params[:category_id]
             set_cat
             is_it_a_cat(@category)
@@ -50,8 +51,13 @@ class RecipesController < ApplicationController
         end
     end
 
-    def filter_list
+    def ordered_list
+        
+        @filter = true 
+
         @recipes = current_user.recipes.ordered_by_title
+
+        render :index
     end
 
     def edit
@@ -59,6 +65,7 @@ class RecipesController < ApplicationController
     end
 
     def update
+        
         if @recipe.update(recipe_params)
             redirect_to @recipe
         else

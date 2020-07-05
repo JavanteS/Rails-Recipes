@@ -1,9 +1,0 @@
-<h3>Your recipe list</h3>
-<br>
-<p>Number of recipes: <%= @recipes.count %></p>
-<ul>
-<% @recipes.each do |r|%>
-<li><%= r.category.name %>: <%= r.title %>-<%= r.created_at.strftime("%B %d, %Y") %></li>
-
-<% end %>
-</ul>
