@@ -1,7 +1,7 @@
  
  
  <h5><%= @recipe.title %></h5>
-
+<p>by <%= @recipe.user.username %></p>
 
  <p>Cooking time: <%= @recipe.cooking_time %></p>
 
@@ -10,8 +10,41 @@
 
 
 
+
+
  <p><%= link_to 'Edit', edit_recipe_path(@recipe) %></p>
 
  <p><%= link_to 'Delete', recipe_path(@recipe), data: { method: :delete } %></p>
+
+
+
+ <h5>Reviews</h5>
+
+ 
+
+ <%= form_for Review.new do |f| %>
+
+<%= f.hidden_field :recipe_id, value: @recipe.id %>
+
+
+ <%= f.label :heading %>
+ <%= f.text_field :heading %>
+
+ <%= f.label :description %>
+ <%= f.text_field :description %>
+
+ <%= f.submit %>
+
+ <% end %>
+
+<% @recipe.reviews.each do |r| %>
+<div>
+<h6><%= r.heading %></h6>
+<p>by <%= r.user.username %> </p>
+<p><%= r.description %></p>
+
+</div>
+<% end %>
+
 
  

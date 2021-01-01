@@ -6,10 +6,15 @@ class RecipesController < ApplicationController
     def index
 
         if params[:category_id]
+
             set_cat
             is_it_a_cat(@category)
+        elsif params[:user_id]
+            @user = User.find_by(id: params[:user_id])
+            @recipes = @user.recipes
         else
-            @recipes = current_user.recipes
+
+            @recipes = Recipe.all
         end
     end
 
@@ -39,13 +44,13 @@ class RecipesController < ApplicationController
 
     def show
         if params[:category_id]
-            @recipes = current_user.categories.find(params[:category_id]).recipes
+            @recipes = Category.find(params[:category_id]).recipes
 
             @recipe = @recipes.find_by(id: params[:id])
 
             is_it_a_recipe(@recipe) 
         else
-            @recipe = current_user.recipes.find_by(id: params[:id])
+            @recipe = Recipe.find_by(id: params[:id])
 
             is_it_a_recipe(@recipe)
         end
@@ -95,7 +100,7 @@ class RecipesController < ApplicationController
     end
 
     def set_cat
-        @category = current_user.categories.find_by(id: params[:category_id])
+        @category = Category.find_by(id: params[:category_id])
     end
     
     def is_it_a_cat(category)

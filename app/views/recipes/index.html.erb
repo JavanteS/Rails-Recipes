@@ -2,7 +2,8 @@
 
 <ul>
 <% @recipes.each do |r| %>
-<li><p><%= r.category.name %> - <%= link_to r.title, recipe_path(r) %></p> </li>
+<li><p><%= link_to r.category.name, category_recipes_path(r.category) %> - <%= link_to r.title, recipe_path(r) %></p> </li>
+<p>more by <%= link_to r.user.username, user_recipes_path(r.user)%></p>
 <% end %>
 </ul>
 
@@ -11,7 +12,7 @@
 <% end %>
 
 <% if @category%>
-<p><%= link_to 'Add a recipe to this category', new_category_recipe_path %></p>
+<p><%= link_to 'Add a recipe to this category', new_category_recipe_path(@category) %></p>
 <% end %>
 
 

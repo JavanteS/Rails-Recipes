@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :reviews
   root to: "application#welcome"
 
   get "/recipes/ordered_list", to: "recipes#ordered_list"
+  get "/users/:user_id/recipes" ,to: "recipes#index", as: "user_recipes"
 
   resources :categories do
     resources :recipes, only: [:index, :show, :new]
